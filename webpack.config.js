@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const packageInfo = require('./package.json');
 
-const outputPath = __dirname + '/dist/';
+const outputPath = __dirname + '/gh-pages/';
 
 const minifiyConfig = {
 	removeComments: true,
