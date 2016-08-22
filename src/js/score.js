@@ -22,7 +22,7 @@ var setSportDpt = function() {
 		spinner: "spinner7"
 	});
 	$('.fl').parent().append('<p class="center" style="position:absolute;width:100%;top:60%;color:#fff">载入中</p>');
-	for (var i = 1; i < 9; i++) {
+	for (var i = 1; i < 7; i++) {
 		gb.dom[i] = document.getElementById("chart" + i);
 	}
 
@@ -39,6 +39,8 @@ var setSportDpt = function() {
 		'<p style="font-size: 1em">党委宣传部</p>';
 	str[4] = '<p style="font-size: 1em;padding-top:30px;">中钞长城贵金属有限公司</p>';
 	str[5] = '<p style="font-size: 1em;padding-top:30px;">能源环保部</p>';
+	str[6] = '<p style="font-size: 1em;padding-top:30px;">中国人民银行商洛市中心支行</p>';
+	str[7] = '<p style="font-size: 1em;padding-top:30px;">中国人民银行商洛市中心支行</p>';
 	$('[name="sportMaster"]').html(str[gb.sportid]);
 }();
 
@@ -46,7 +48,7 @@ var setSportDpt = function() {
 function getScoreOrder() {
 	//载入首页信息完毕，准备第二页信息
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreOrder&score=' + gb.userInfo.score,
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreOrder&score=' + gb.userInfo.score,
 		data: {
 			sportid: gb.sportid
 		},
@@ -73,7 +75,7 @@ function getScoreOrder() {
 function getScoreOrderByDpt() {
 	//载入首页信息完毕，准备第二页信息
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreOrderByDpt&score=' + gb.userInfo.score + "&dpt=" + gb.userInfo.user_dpt,
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreOrderByDpt&score=' + gb.userInfo.score + "&dpt=" + gb.userInfo.user_dpt,
 
 		data: {
 			sportid: gb.sportid
@@ -165,7 +167,7 @@ function getScoreRangeOption(obj, option) {
 function getTimeLength() {
 
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getTimeLength',
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getTimeLength',
 		data: {
 			dpt: gb.userInfo.user_dpt,
 			sportid: gb.sportid
@@ -193,7 +195,7 @@ function getTimeLength() {
 //活动参与度
 function getAnsweredRatio() {
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getAnsweredRatio',
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getAnsweredRatio',
 		data: {
 			sportid: gb.sportid
 		},
@@ -222,7 +224,7 @@ function getAnsweredRatio() {
 //得分对比
 function getScoreCompare() {
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreCompare',
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreCompare',
 		data: {
 			sportid: gb.sportid
 		},
@@ -238,70 +240,72 @@ function getScoreCompare() {
 		$('[name="highestScore"]').text(obj[0].dpt);
 		$('[name="highestScorePrpt"]').text(obj[0].score);
 		//getPrizeCompare();
-		get2ndPassedCompare();
+		//get2ndPassedCompare();
+		getScoreRangeByDpt();
 	});
 }
 
 //获奖对比
-function getPrizeCompare() {
-	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getPrizeCompare',
-		data: {
-			sportid: gb.sportid
-		},
-		async: false,
-		dataType: "jsonp",
-		callback: "JsonCallback"
-	}).done(function(obj) {
-		//console.log(6);
-		//$('[name="progress"]').text('60%');
-		//部门间比较信息
-		//gb.userInfo.dptCompare = {};
-		gb.userInfo.dptCompare.prizeCompare = obj;
-		$('[name="prizePrpt"]').text(obj[0].passRatio);
-		get2ndPassedCompare();
+// function getPrizeCompare() {
+// 	$.ajax({
+// 		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getPrizeCompare',
+// 		data: {
+// 			sportid: gb.sportid
+// 		},
+// 		async: false,
+// 		dataType: "jsonp",
+// 		callback: "JsonCallback"
+// 	}).done(function(obj) {
+// 		//console.log(6);
+// 		//$('[name="progress"]').text('60%');
+// 		//部门间比较信息
+// 		//gb.userInfo.dptCompare = {};
+// 		gb.userInfo.dptCompare.prizeCompare = obj;
+// 		$('[name="prizePrpt"]').text(obj[0].passRatio);
 
-	});
-}
+// 		//get2ndPassedCompare();
+
+// 	});
+// }
 
 //获奖对比
-function get2ndPassedCompare() {
-	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/get2ndPassedRatio',
-		data: {
-			sportid: gb.sportid
-		},
-		async: false,
-		dataType: "jsonp",
-		callback: "JsonCallback"
-	}).done(function(obj) {
-		//console.log(7);
-		//$('[name="progress"]').text('70%');
-		$('[name="2ndTimesPrpt"]').text(obj['2ndPassedRatio']);
-		$('[name="1stTime"]').text(obj.moreChance);
+// function get2ndPassedCompare() {
+// 	$.ajax({
+// 		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/get2ndPassedRatio',
+// 		data: {
+// 			sportid: gb.sportid
+// 		},
+// 		async: false,
+// 		dataType: "jsonp",
+// 		callback: "JsonCallback"
+// 	}).done(function(obj) {
+// 		//console.log(7);
+// 		//$('[name="progress"]').text('70%');
+// 		$('[name="2ndTimesPrpt"]').text(obj['2ndPassedRatio']);
+// 		$('[name="1stTime"]').text(obj.moreChance);
 
-		$.ajax({
-			url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/get2ndPassedCompare',
-			data: {
-				sportid: gb.sportid
-			},
-			async: false,
-			dataType: "jsonp",
-			callback: "JsonCallback"
-		}).done(function(obj) {
-			//gb.userInfo.dptCompare = {};
-			//console.log(8);
-			//$('[name="progress"]').text('80%');
-			gb.userInfo.dptCompare.moreChancePassedCompare = obj;
-			getScoreRangeByDpt();
-		});
+// 		$.ajax({
+// 			url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/get2ndPassedCompare',
+// 			data: {
+// 				sportid: gb.sportid
+// 			},
+// 			async: false,
+// 			dataType: "jsonp",
+// 			callback: "JsonCallback"
+// 		}).done(function(obj) {
+// 			//gb.userInfo.dptCompare = {};
+// 			//console.log(8);
+// 			//$('[name="progress"]').text('80%');
+// 			gb.userInfo.dptCompare.moreChancePassedCompare = obj;
+// 			getScoreRangeByDpt();
+// 		});
 
-	});
-}
+// 	});
+// }
 
 function getScoreRangeByDpt() {
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreRangeByDpt&dpt=' + gb.userInfo.user_dpt,
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreRangeByDpt&dpt=' + gb.userInfo.user_dpt,
 
 		data: {
 			sportid: gb.sportid
@@ -326,7 +330,7 @@ function getScoreRangeByDpt() {
 function getScoreRange() {
 
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreRange',
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getScoreRange',
 		data: {
 			sportid: gb.sportid
 		},
@@ -646,7 +650,7 @@ var getOptions = function(index) {
 		gb.optionRenderFlag[index - 2] = true;
 		return option;
 
-	}*/
+	}
 	else if (index == 8 && !gb.optionRenderFlag[index - 2]) {
 
 		option = util.initOption();
@@ -736,8 +740,8 @@ var getOptions = function(index) {
 		//gb.myChart[index - 2].setOption(option);
 		gb.optionRenderFlag[index - 2] = true;
 		return option;
-	}
-}
+	}*/
+};
 
 
 //sectionsColor: ['#293c55'],
@@ -747,12 +751,12 @@ var initDom = function() {
 		navigation: true,
 		afterRender: function(index, direction) {
 
-			for (var i = 1; i < 8; i++) {
+			for (var i = 1; i < 7; i++) {
 				gb.myChart[i - 1] = echarts.init(gb.dom[i]);
 			}
 
 			$(window).resize(function() {
-				for (var i = 1; i < 8; i++) {
+				for (var i = 1; i < 7; i++) {
 					gb.myChart[i - 1].resize();
 				}
 			});
@@ -765,7 +769,7 @@ var initDom = function() {
 		afterLoad: function(anchor, index) {
 			handleCounterup($(".section:nth(" + (index - 1) + ")").find(".number"), 500);
 
-			if (index >= 2 && index <= 8) {
+			if (index >= 2 && index <= 7) {
 				gb.myChart[index - 2] = echarts.init(gb.dom[index - 1]);
 				gb.myChart[index - 2].setOption(gb.option[index]);
 			}
@@ -790,7 +794,7 @@ var initDom = function() {
 
 var refreshData = function() {
 	$.ajax({
-		url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getSafeExamData&uid=' + uid,
+		url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getSafeExamData&uid=' + uid,
 		data: {
 			sportid: gb.sportid
 		},
@@ -821,7 +825,7 @@ var refreshData = function() {
 			if (gb.userInfo.score == 100) {
 				$('[name="myErr"]').hide();
 			} else {
-				$('[name="myErr"]').attr('href', window.location.href.replace('partyScore', 'myPartyErr'));
+				$('[name="myErr"]').attr('href', window.location.href.replace('score', 'error'));
 			}
 
 

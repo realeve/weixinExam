@@ -49,7 +49,7 @@ function handleTotalScore(iScore, uid, exam) {
 
 function submitPaper(data, exam) {
 	$.ajax({
-			url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setSafeExamData',
+			url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/setSafeExamData',
 			data: data,
 			dataType: "jsonp",
 			callback: "JsonCallback",
@@ -89,7 +89,6 @@ function submitPaper(data, exam) {
 			if (!exam.realMatch) {
 				$('#submit').hide();
 			}
-			return exam;
 		});
 }
 
@@ -216,7 +215,6 @@ function submitData(bCheck, answerNums, exam) {
 	if (!bCheck && data.answer_nums < exam.maxAnswerNum) {
 		data.iTimes = 2;
 	}
-
 	if (exam.timeLength == 0) {
 		$.modal({
 			title: "提示",
@@ -224,7 +222,8 @@ function submitData(bCheck, answerNums, exam) {
 			buttons: [{
 				text: "交卷",
 				onClick: function() {
-					exam = submitPaper(data, exam);
+					exam.isSubmit = true;
+					submitPaper(data, exam);
 				}
 			}, {
 				text: "检查一遍",
@@ -234,9 +233,9 @@ function submitData(bCheck, answerNums, exam) {
 			}]
 		});
 	} else {
-		exam = submitPaper(data, exam);
+		exam.isSubmit = true;
+		submitPaper(data, exam);
 	}
-
 	return exam;
 }
 
@@ -329,7 +328,7 @@ module.exports = {
 		}
 		//选项乱序 -END
 
-		str += strQues + '</div><img name="fixed" src="http://cbpc540.applinzi.com/topic/exam/assets/img/main.jpg" class="background_dark answer-title"></div>';
+		str += strQues + '</div><img name="fixed" src="//cbpc540.applinzi.com/topic/exam/assets/img/main.jpg" class="background_dark answer-title"></div>';
 		return str;
 	},
 	getRandomArr: getRandomArr,
@@ -341,7 +340,9 @@ module.exports = {
 		var curScore = (answerInfo.data('value') + 1 == answerPrnt.data('answer')) ? 1 : 0;
 		var curID = answerPrnt.data('id');
 
-		if (!exam.isAnswered[curID]) {
+		//增加此条件将存在修改答案后分数不变的BUG
+		//if (!exam.isAnswered[curID])
+		{
 			exam.answerList[curID] = curScore;
 			exam.isAnswered[curID] = 1;
 			exam.curID = curID;
@@ -381,7 +382,7 @@ module.exports = {
 			$.toast("请输入个人用户信息", "cancel");
 		} else {
 			$.ajax({
-				url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/examSafeLogin',
+				url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/examSafeLogin',
 				data: data,
 				dataType: "jsonp",
 				callback: "JsonCallback",

@@ -126,7 +126,7 @@ var app = function() {
 		});
 
 		$('#submit').on('click', function() {
-			exam = util.submitData(true, exam.curID, exam);
+			exam = util.submitData(!exam.realMatch, exam.curID, exam);
 		});
 
 	}

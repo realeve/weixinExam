@@ -3,7 +3,7 @@ var audioInit = function() {
 		return Math.ceil(Math.random() * i);
 	}
 	var bgmid = randomID(6);
-	$('#autoplay').attr('src', 'http://cbpc540.applinzi.com/topic/exam/assets/audio/bgm' + bgmid + '.mp3');
+	$('#autoplay').attr('src', '//cbpc540.applinzi.com/topic/exam/assets/audio/bgm' + bgmid + '.mp3');
 	var audio = document.getElementById('autoplay');
 	var controller = document.getElementById('musicBtn');
 	var controllerHint = document.getElementById('musicBtnTxt');
