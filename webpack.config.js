@@ -47,7 +47,7 @@ var webpackConfig = {
 			loader: ExtractTextPlugin.extract('style', 'css')
 		}, {
 			test: /\.json$/,
-			loader: "json"
+			loader: "json-loader"
 		}]
 	},
 	postcss: [

@@ -23,7 +23,7 @@ var app = function() {
 		$('[name="sucessInfo"] .weui_msg_title').hide();
 		$('[name="sportDate"]').text(exam.sportDate);
 
-		var dpt = require('./config/departmentgw.js');
+		var dpt = require('./config/departmentgw.json');
 
 		var dptLen = dpt.length,
 			dptName = [];
@@ -72,7 +72,7 @@ var app = function() {
 	};
 
 	function getPaper() {
-		var question = require('./config/costgw.js');
+		var question = require('./config/costgw.json');
 		var quesLen = question.length;
 
 		//管三活动，仅前200道题目参与问答

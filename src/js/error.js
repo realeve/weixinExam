@@ -63,7 +63,7 @@ var app = function() {
 	};
 
 	function getPaper() {
-		var question = require('./config/'+exam.examPaper+'.js');
+		var question = require('./config/'+exam.examPaper+'.json');
 		var quesLen = question.length;
 
 		//只抽取maxAnswerNum个

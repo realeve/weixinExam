@@ -1,4 +1,4 @@
-module.exports = [{
+[{
 	"name": "董事会、经理部",
 	"nums": 12,
 	"attr": "董事会、经理部"

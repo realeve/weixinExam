@@ -1,4 +1,4 @@
-module.exports = [{
+[{
 	"name": "办公室",
 	"nums": 17
 }, {
@@ -28,4 +28,4 @@ module.exports = [{
 }, {
 	"name": "精炼生产部",
 	"nums": 40
-}];
+}]
