@@ -15,7 +15,7 @@ var exam = {
 	isLogin: false, //是否登录
 	loginData: {}, //用户登录信息
 	maxAnswerNum: 20, //最大抽取多少道题目
-	answerTimes: 0, //每个用户最多回答几次
+	answerTimes: 1, //每个用户最多回答几次
 	examPaper: "cost", //试卷文件
 	sportDate: "8月24日至8月31日",
 	sportid: SPORT.GREATWALL,

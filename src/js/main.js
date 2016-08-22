@@ -23,7 +23,7 @@ var app = function() {
 		$('[name="sucessInfo"] .weui_msg_title').hide();
 		$('[name="sportDate"]').text(exam.sportDate);
 
-		var dpt = require('./config/department.js');
+		var dpt = require('./config/departmentgw.js');
 
 		var dptLen = dpt.length,
 			dptName = [];

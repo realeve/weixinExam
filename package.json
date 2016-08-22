@@ -1,7 +1,7 @@
 {
-  "name": "webpack-study",
+  "name": "weixinExam",
   "version": "1.0.0",
-  "description": "管三党支两学一做微信答题活动",
+  "description": "微信答题活动",
   "main": "bundle.js",
   "scripts": {
     "start": "webpack --progress",
