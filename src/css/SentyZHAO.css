@@ -1,7 +1,7 @@
 @font-face {
     font-family: "SentyZHAO";
-    src: url("SentyZHAO.ttf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
-
+    src: url("SentyZHAO.eot"); /* IE9 */
+    src: url("SentyZHAO.ttf") format("truetype"); /* iOS 4.1- */
     font-style: normal;
     font-weight: normal;
 }

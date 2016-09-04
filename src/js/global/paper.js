@@ -1,2 +1,2 @@
-var PAPER = ['safe', 'party3', 'party3', 'cost', 'costgw', 'party5','xian_leader','xian_employee'];
+var PAPER = ['safe', 'party3', 'party3', 'cost', 'costgw', 'party5','xian','quality'];
 module.exports = PAPER;

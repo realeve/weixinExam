@@ -2,6 +2,12 @@ function jsRight(sr, rightn) {
 	return sr.substring(sr.length - rightn, sr.length);
 }
 
+function getUrlParam(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	var r = encodeURI(window.location.search).substr(1).match(reg); //匹配目标参数
+	if (r !== null) return decodeURI(r[2]);
+	return null; //返回参数值
+}
 //数组随机排序
 function randomsort(a, b) {
 	return Math.random() > 0.5 ? -1 : 1;
@@ -70,12 +76,13 @@ function submitPaper(data, exam) {
 					//防止一个人写多条记录
 					//exam.loginData.iTimes = 2;
 				}
-				if (isAllQuestionAnswered(exam)) {
-					$.fn.fullpage.moveTo(0, exam.lastPage - 1);
-				}
-				/*else {
-					/*$.fn.fullpage.moveSlideRight();
-				}*/
+
+				// if (isAllQuestionAnswered(exam)) {
+				// 	$.fn.fullpage.moveTo(0, exam.lastPage - 1);
+				// }
+
+				//$.fn.fullpage.moveSlideRight();
+
 
 			},
 			error: function(obj) {
@@ -90,6 +97,10 @@ function submitPaper(data, exam) {
 				$('#submit').hide();
 			}
 		});
+
+	// if (isAllQuestionAnswered(exam)) {
+	// 	$.fn.fullpage.moveTo(0, exam.lastPage - 1);
+	// }
 }
 
 function isAllQuestionAnswered(exam) {
@@ -353,7 +364,7 @@ module.exports = {
 
 				//未到最后一题
 				//
-				if (curID < exam.maxAnswerNum - 1) {
+				if (curID <= exam.maxAnswerNum - 1) {
 					//如果当前答对，并且在实时比赛模式才提交分数
 					if ( /*curScore && */ exam.realMatch) {
 						//直接提交当前数据，不需审核
@@ -370,28 +381,29 @@ module.exports = {
 		return exam;
 	},
 	getUserInfo: function(exam) {
+		var type = getUrlParam('type');
+		if (type == null) {
+			type = 0;
+		}
 		var data = {
 			user_name: $('[name="userName"]').val().trim(),
-			user_id: $('[name="userCard"]').val().trim(),
 			user_dpt: $('[name="user_dpt"]').val(),
-			sportid: exam.sportid
+			sportid: exam.sportid,
+			type: type
 		};
-		data.user_firstname = data.user_name.substr(0, 1);
 
 		if (!validate(data)) {
 			$.toast("请输入个人用户信息", "cancel");
 		} else {
 			$.ajax({
-				url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/examSafeLogin',
+				url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/examLoginXian',
 				data: data,
 				dataType: "jsonp",
 				callback: "JsonCallback",
 				success: function(obj) {
 					//var obj = loginData[0];
 					if (obj.id == 0) { //查无此人
-						$.alert("登录失败，请检查您的卡号及部门", "警告！");
-					} else if (obj.first_name.trim() != data.user_firstname) {
-						$.alert("登录失败，您的姓名可能填写错误", "警告！");
+						$.alert("登录失败，请检查您的个人信息", "警告！");
 					} else { //登录成功
 
 						//存储用户信息
@@ -463,5 +475,6 @@ module.exports = {
 			}
 		}
 		return exam;
-	}
+	},
+	getUrlParam: getUrlParam
 };

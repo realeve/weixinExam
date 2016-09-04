@@ -4,39 +4,40 @@ require('./vendors/jquery-weui.js');
 //var $ = require('jquery');
 require('./vendors/g2/effective.js');
 require('./vendors/fakeLoader.js/fakeLoader.js');
-
 var exam = require('./global/config.js');
 
 var util = require('./exam/examFunc.js');
+var PAPER = require('./global/paper.js');
+function initDom() {
+	//此处设置一个较长数值，数据载入完毕后再显示
+	$("#fakeLoader").fakeLoader({
+		timeToHide: 600000, //Time in milliseconds for fakeLoader disappear
+		bgColor: "#d7eefe",
+		spinner: "spinner7"
+	});
+	$('.fl').parent().append('<p class="center" style="position:absolute;width:100%;top:60%;color:#445">载入中...</p>');
+
+	//隐藏提示信息
+	$('[name="sucessInfo"] .weui_msg_title').hide();
+	$('[name="sportDate"]').text(exam.sportDate);
+
+	var dpt = require('./config/department.json');
+
+	var dptLen = dpt.length,
+		dptName = [];
+	dpt.map(function(dpt_name) {
+		dptName.push(dpt_name.name);
+	});
+
+	$('[name="user_dpt"]').select({
+		title: "请选择您的部门",
+		items: dptName
+	});
+}
+
+initDom();
 
 var app = function() {
-	function initDom() {
-		//此处设置一个较长数值，数据载入完毕后再显示
-		$("#fakeLoader").fakeLoader({
-			timeToHide: 600000, //Time in milliseconds for fakeLoader disappear
-			bgColor: "#d7eefe",
-			spinner: "spinner7"
-		});
-		$('.fl').parent().append('<p class="center" style="position:absolute;width:100%;top:60%;color:#445">载入中...</p>');
-
-		//隐藏提示信息
-		$('[name="sucessInfo"] .weui_msg_title').hide();
-		$('[name="sportDate"]').text(exam.sportDate);
-
-		var dpt = require('./config/departmentgw.json');
-
-		var dptLen = dpt.length,
-			dptName = [];
-		dpt.map(function(dpt_name) {
-			dptName.push(dpt_name.name);
-		});
-
-		$('[name="user_dpt"]').select({
-			title: "请选择您的部门",
-			items: dptName
-		});
-
-	}
 
 	var renderPaper = function() {
 
@@ -72,7 +73,7 @@ var app = function() {
 	};
 
 	function getPaper() {
-		var question = require('./config/costgw.json');
+		var question = require('./config/' + PAPER[exam.sportid] + '.json');
 		var quesLen = question.length;
 
 		//管三活动，仅前200道题目参与问答
@@ -127,12 +128,12 @@ var app = function() {
 
 		$('#submit').on('click', function() {
 			exam = util.submitData(!exam.realMatch, exam.curID, exam);
+
 		});
 
 	}
 	return {
 		init: function() {
-			initDom();
 			loadQuestions();
 		}
 	};

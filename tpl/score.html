@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
 <meta charset="UTF-8">
-<title>长城公司2016年“成本管理月”微信答题活动</title>
+<title>数说</title>
 <meta name="apple-mobile-web-app-capable" container="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" container="black-translucent"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,76 +16,62 @@
 </aside>
 <audio autoplay="autoplay" loop="loop" id="autoplay"></audio>
 <div id="fullpage">
-	<div class="section">
-	    <div class="slide center">
-	    	<div name="fixed" style="margin:0 auto;position:absolute;top:20%;">
-		        <h1 class="white-font headerTitle" style="line-height: 1.4em;font-size:3em;">长城公司<p class="headerSubTitle">成本管理月微信答题活动</p></h1>
-		        <article class="weui_article white-font headerSubTitle" style="padding-top: 40px;line-height: .5em;color:#eee;">
-		        	<h1>活动时间：<span name="sportDate"></span> <p>题目: <span name="nums" style="font-weight:bold"></span> 道单选，每题 <span name="scores" style="font-weight:bold"></span> 分。</p><p style="padding-top:10px;">(每人仅限1次答题机会)</p></h1>
-		        </article>
-	        </div>
-	    	<img src="./welcome.jpg" class="background_welcome" style="height:100%;width:100%;display:block;margin:0 auto;"></img>
-			<div id="c1" style="position: absolute;bottom: 0;"></div>
-	    </div>
-	    <div class="slide center" name="login">
-			<div class="weui_msg" name="fixed" style="position:absolute;top:10;">
-			    <div class="weui_text_area">
-			        <h2 class="weui_msg_title white-font" style="font-weight:bold;">登录</h2>
-			        <p class="weui_msg_desc">请先填写个人信息</p>
-			    </div>
-			    <div class="bd">
-			      	<div class="weui_cell">
-				        <div class="weui_cell_hd"><label for="date" class="weui_label white-font">部门</label></div>
-				        <div class="weui_cell_bd weui_cell_primary">
-				          <input class="weui_input white-font" name="user_dpt" type="text" placeholder="点击选择部门" value="">
-				        </div>
-			      	</div>
-				    <div class="weui_cell">
-			            <div class="weui_cell_hd"><label class="weui_label white-font">姓名</label></div>
-			            <div class="weui_cell_bd weui_cell_primary">
-			                <input class="weui_input white-font" name="userName" type="text" placeholder="点击输入姓名">
-			            </div>
-			        </div>
-				    <div class="weui_cell">
-			            <div class="weui_cell_hd"><label class="weui_label white-font">员工卡号</label></div>
-			            <div class="weui_cell_bd weui_cell_primary">
-			                <input class="weui_input white-font" name="userCard" type="number" pattern="[0-9]*" placeholder="点击输入员工卡号中的数字部分">
-			            </div>
-			        </div>
-			    </div>
-			    <div class="weui_opr_area">
-			        <p class="weui_btn_area">
-			            <a href="javascript:;" class="weui_btn weui_btn_primary weui_btn_primary_yellow" id="login">登录</a>
-			        </p>
-			    </div>
-			</div>
-	    	<div name="fixed" style="position: absolute;top:85%;box-sizing: content-box;display: table-cell;margin:0 auto;">
-		        <article class="weui_article white-font headerSubTitle" style="color:#eee;line-height: .6em; font-size:1.2em;">
-		        	主办单位：中钞长城贵金属有限公司
-		        </article>
-	        </div>
-	    	<img src="./welcome2.jpg" class="background_welcome" style="height:100%;width:100%;display:block;margin:0 auto;"></img>
-	    </div>
-	    <div class="slide" name="sucessInfo" style="background-color:#e4e4f4">
-			<div name="fixed" class="weui_msg hidden">
-			    <div class="weui_icon_area"><i class="weui_icon_msg weui_icon_warn"></i></div>
-			    <div class="weui_text_area">
-			        <p class="weui_msg_desc">请先提交试卷</p>
-			        <h2 class="weui_msg_title"></h2>
-			    </div>
-			    <div class="weui_opr_area">
-			        <p class="weui_btn_area">
-			            <a name="scoreLink" class="weui_btn weui_btn_plain_primary">点击查看成绩统计</a>
-			        </p>
-			        <p class="weui_btn_area">
-			            <a name="errLink" class="weui_btn weui_btn_plain_primary">点击查看错题统计</a>
-			        </p>
-			    </div>
-			</div>
-	    </div>
-	</div>
+    <div class="section  white-font-blue background-deepblue">
+    	   <h1 class="title center" style="font-size: 3em">数说<span name="sportname"></span></h1>
+    	   <p class="descTitle"><span name="userName"></span>，您好：</p>
+    	   <p class="descTitle"><span name="sportname"></span>有奖答题活动开始以来，我们一共收到了 <span class="white-font number" name="totals"></span> 份答卷，作为第 <span class="white-font number" name="userOrder"></span> 位交卷者，您在本次活动中<span name="answerTimes"></span>取得了 <span class="white-font number" name="userScore"></span> 分,<span name="scoreDesc"></span>。</p>
+    </div>
+    <div class="section  white-font background-orange hidden">
+    	<h1 class="title">你在本次活动的排名</h1>
+    	<p>在目前交卷的<span class="number" name="totals"></span>人中，您排名第<span class="number" name="ltdOrder"></span>位，击败了<span class="number" name="scorePropt"></span>%的人<span name="scoreProptDesc"></span>当然这个数据还在不断刷新，您可以随时回来观看。</p>
+    	<div id="chart1" class="chart"></div>
+    </div>
+    <div class="section  white-font background-purple hidden">
+    	<h1 class="title">你在单位的排名</h1>
+    	<p>您所在的<span name="dptName"></span> 一共有在职员工<span class="number" name="dptCrewNum"></span>人，目前有<span class="number" name="dptTotals"></span>名员工参与活动，在单位中您排名第<span class="number" name="dptOrder"></span>位，击败了<span class="number" name="dptScorePropt"></span>%的人。</p>
+    	<div id="chart2" class="chart"></div>
+    </div>
+    <div class="section  white-font background-lightBlue hidden">
+    	<h1 class="title">答题速度</h1>
+    	<p>天下武功，唯快不破。您仅用了<span name="userMinuteLength"></span>分<span class="number" name="userSecondLength"></span>秒便完成所有的<span class="number">20</span>道题目，<span name="timeDesc1"></span><span name="dptName"></span>平均水平<span class="number" name="dptTimeLength"></span>分钟，<span name="timeDesc2"></span>本次活动平均水平<span class="number" name="ltdTimeLength"></span>分钟。</p>
+    	<div id="chart3" class="chart"></div>
+    </div>
+    <div class="section  white-font background-deepGreen hidden">
+    	<h1 class="title">活动参与度</h1>
+    	<p>截止目前， <span name="mostPeople"></span>的员工对本次活动更加热情，共有<span class="number" name="answeredPrpt"></span>%的员工提交了试卷<span name="answerRatioDesc"></span></p>
+    	<div id="chart4" class="chart"></div>
+    </div>
+    <div class="section  dark-font background-yellow hidden">
+    	<h1 class="title">本单位得分分布</h1>
+    	<p><span name="dptName"></span>目前参与活动的<span class="number" name="dptTotals"></span>名员工中，有<span class="number" name="dptMostScoreNum"></span>人获得了<span class="number" name="dptMostScore"></span>分，下面是其它分数的分布情况:</p>
+    	<div id="chart5" class="chart"></div>
+    </div>
+    <div class="section  white-font background-blue hidden">
+    	<h1 class="title">得分Top 6</h1>
+    	<p>截止目前，<span name="highestScore"></span> 的员工得分最高，平均分达到了<span class="number" name="highestScorePrpt"></span>分。<span name="dptMostScoreDesc"></span></p>
+    	<div id="chart6" class="chart"></div>
+    </div>
+    <!--div class="section  white-font background-purple hidden">
+    	<h1 class="title">获奖比例Top 6</h1>
+    	<p>截止目前，公司共有<span class="number" name="prizePrpt"></span>%的员工通过了本次测试，在活动结束之后能领到心仪的奖品。</p>
+    	<div id="chart7" class="chart"></div>
+    </div-->
+    <!--div class="section  white-font background-blue hidden">
+    	<h1 class="title" style="font-size: 1.5em;">如果上天再给我一次机会</h1>
+    	<p>截止目前，共有<span class="number" name="2ndTimesPrpt"></span>%的员工利用第二次测试机会顺利拿到了80分，还有<span class="number" name="1stTime"></span>名员工虽然未通过，但他们还能再答一次呢，赶快分享告诉他们吧。</p>
+    	<div id="chart7" class="chart"></div>
+    </div-->
+    <div class="section  center white-font background-orange hidden">
+    	<h1 class="title">感谢您的参与！</h1>
+    	<p style="font-size: 0.8em">希望您能在本次<span name="sportname"></span>活动中，继续努力学习哦。</p>
+    	<span name="sportMaster"></span>
+        <a name="myErr" class="weui_btn weui_btn_plain_primary" style="margin-top:70px;color:#fff;border:1px solid #fff;">点击查看我的错题</a>
+    	<p style="position:absolute;top:90%;text-align: center;width:100%;font-size:.8em">&copy;CBPC 2016 All Rights Reserved.</p>
+    </div>
 </div>
-<div class="iSlider-arrow-blue-right"></div>
+<div class="iSlider-arrow iSlider-white"></div>
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+<script src="//cdn.bootcss.com/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
 </body>
 </html>

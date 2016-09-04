@@ -26,6 +26,7 @@ const minifiyConfig = {
 var webpackConfig = {
 	entry: {
 		index: "./index.js",
+		online: "./online.js",
 		error: "./error.js",
 		score: "./score.js"
 	},
@@ -64,10 +65,11 @@ var webpackConfig = {
 };
 
 for (var key in webpackConfig.entry) {
+	const tplPath = './tpl/';
 	var plugin = new HtmlWebpackPlugin({
 		title: packageInfo.description,
 		minify: minifiyConfig,
-		template: key + '.html',
+		template: tplPath+key + '.html',
 		filename: key + '.html',
 		chunks: [key],
 		hash: false

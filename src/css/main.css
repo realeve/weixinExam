@@ -263,12 +263,9 @@
     vertical-align: top;
 	height:100%;width:100%;display:block;margin:0 auto;
 }
-.background_welcome{
-    /*background-image: url('../img/welcome.jpg');*/
-	background:'#202c3c';
-}
+
 .background_main_error{
-    background-image: url('http://cbpc540.applinzi.com/topic/exam/assets/img/main.jpg');
+    background-image: url('../img/main.jpg');
 }
 .answer-title{
 	height:100%;top:0;position:absolute;display:block;margin:0 auto;z-index:-1;

@@ -3,6 +3,17 @@ require('./vendors/jquery.fullPage.js');
 require('./vendors/jquery-weui.js');
 require('./vendors/fakeLoader.js/fakeLoader.js');
 
+function initDom() {
+	//此处设置一个较长数值，数据载入完毕后再显示
+	$("#fakeLoader").fakeLoader({
+		timeToHide: 600000, //Time in milliseconds for fakeLoader disappear
+		bgColor: "#d7eefe",
+		spinner: "spinner7"
+	});
+	$('.fl').parent().append('<p class="center" style="position:absolute;width:100%;top:60%;color:#445">载入中...</p>');
+}
+initDom();
+
 var exam = require('./global/config.js');
 var WINDOWTITLE = require('./global/windowtitle.js');
 var PAPER = require('./global/paper.js');
@@ -14,18 +25,8 @@ if (sid != null) {
 	exam.examPaper = PAPER[sid];
 	document.title = WINDOWTITLE[sid];
 }
-	
-var app = function() {
-	function initDom() {
-		//此处设置一个较长数值，数据载入完毕后再显示
-		$("#fakeLoader").fakeLoader({
-			timeToHide: 600000, //Time in milliseconds for fakeLoader disappear
-			bgColor: "#d7eefe",
-			spinner: "spinner7"
-		});
-		$('.fl').parent().append('<p class="center" style="position:absolute;width:100%;top:60%;color:#445">载入中...</p>');
-	}
 
+var app = function() {
 	var rendPaper = function() {
 
 		$('#fullpage').fullpage({
@@ -63,7 +64,7 @@ var app = function() {
 	};
 
 	function getPaper() {
-		var question = require('./config/'+exam.examPaper+'.json');
+		var question = require('./config/' + exam.examPaper + '.json');
 		var quesLen = question.length;
 
 		//只抽取maxAnswerNum个
@@ -109,13 +110,13 @@ var app = function() {
 		document.getElementById('autoplay').play();
 		rendPaper();
 	}
-	
-	function initApp(){			
+
+	function initApp() {
 		if (uid == -1) {
 			getPaper();
 		} else {
 			$.ajax({
-				url: 'http://cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getMyErrs&sportid=' + sid + '&uid=' + uid,
+				url: '//cbpc540.applinzi.com/index.php?s=/addon/GoodVoice/GoodVoice/getMyErrs&sportid=' + sid + '&uid=' + uid,
 				async: false,
 				dataType: "jsonp",
 				callback: "JsonCallback"
@@ -141,7 +142,7 @@ var app = function() {
 			});
 		}
 	}
-	
+
 	$('#fullpage').on('click', '[name="hidethis"]', function() {
 		/* Act on the event */
 		//载入数据
@@ -165,10 +166,9 @@ var app = function() {
 		localStorage.removeItem(key);
 		window.location.href = window.location.href;
 	});
-	
+
 	return {
 		init: function() {
-			initDom();
 			initApp();
 		}
 	};

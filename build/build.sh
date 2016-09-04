@@ -2,7 +2,7 @@
 
 basePath=$(cd `dirname $0`; pwd)
 cd ${basePath}/../
-rm -r dist
+rm -r gh-pages
 
 #npm run prepublish
 

@@ -1,5 +1,5 @@
-# weixinExam
-[https://realeve.github.io/weixinExam/gh-pages/](https://realeve.github.io/weixinExam/gh-pages/)
+# weixinXian
+[https://realeve.github.io/weixinXian/gh-pages/](https://realeve.github.io/weixinXian/gh-pages/)
 
 #install
 npm install
